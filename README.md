@@ -1,7 +1,7 @@
-# Sahayak — Voice-Enabled AI Teaching Assistant
+# Vidya — Voice-Enabled AI Teaching Assistant
 
 A hands-free, **Hinglish** voice co-pilot for teachers in Indian government schools.
-The teacher speaks a command; Sahayak replies **aloud** *and* projects a clean visual on
+The teacher speaks a command; Vidya replies **aloud** *and* projects a clean visual on
 the classroom **smart board** — no typing, no mouse, no breaking the flow of the lesson.
 
 > Built for the **Connecting Dreams Foundation — Round 2** technical assignment (**Option A**).
@@ -12,7 +12,7 @@ the classroom **smart board** — no typing, no mouse, no breaking the flow of t
 
 ### 1. Live Concept Simplification — a visual lesson slideshow
 Teacher: *“Explain the water cycle in simple Hinglish.”*
-→ Sahayak **speaks** an intro and builds a **multi-slide lesson** on the board. Each slide
+→ Vidya **speaks** an intro and builds a **multi-slide lesson** on the board. Each slide
 pairs a **real image/diagram fetched live from the internet** (Wikipedia → Openverse, no API
 key) with a short Hinglish heading and explanation. The teacher steps through with
 **◀ Previous / Next ▶** (or by voice), and the final slide recaps with **real-life examples,
@@ -20,7 +20,7 @@ a “Remember” takeaway, and a fun fact**.
 
 ### 2. Voice-Triggered Quizzing — interactive & scored
 Teacher: *“Make a quiz on this.”*
-→ Sahayak **announces** a quiz aloud and shows big **A/B/C/D cards**. Students **tap to
+→ Vidya **announces** a quiz aloud and shows big **A/B/C/D cards**. Students **tap to
 answer** — correct turns green (with a celebration), wrong turns red — and a **live score**
 is kept. It’s driven by voice *or* on-screen buttons:
 - *“show answer”* → reveal & explain
@@ -88,7 +88,7 @@ Typed input ──────────────────────�
 
 ## Localization
 
-Sahayak is built **around Hinglish**, not bolted on:
+Vidya is built **around Hinglish**, not bolted on:
 - **Input** is transcribed with a code-switch-aware model and a Hinglish prompt hint.
 - **Taught content** (board text + spoken voice) is constrained to simple Roman-script
   Hinglish with everyday Indian examples (roti, cricket, monsoon, mandi).
@@ -102,7 +102,7 @@ Sahayak is built **around Hinglish**, not bolted on:
 ## Run locally
 
 ```powershell
-cd Sahayak
+cd silver-spoon
 python -m venv .venv
 .venv\Scripts\activate          # Windows  (use: source .venv/bin/activate on macOS/Linux)
 pip install -r requirements.txt
@@ -149,7 +149,7 @@ Render runs the app as a container, configured from the dashboard:
 ## Project layout
 
 ```
-Sahayak/
+vidya/
 ├── app.py                 # Streamlit UI, state machine, mic + typed input, slideshow + quiz
 ├── src/
 │   ├── config.py          # keys + model choices

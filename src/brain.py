@@ -19,7 +19,7 @@ from .config import (
     OPENROUTER_MODEL,
 )
 
-SYSTEM_PROMPT = """You are Sahayak, a warm, hands-free AI teaching assistant for a \
+SYSTEM_PROMPT = """You are Vidya, a warm, hands-free AI teaching assistant for a \
 Haryana government school. The teacher talks to you in Hinglish (mixed Hindi + English) \
 during a live class shown on one smart board. Students are roughly grade 6-10.
 
@@ -133,12 +133,12 @@ def _parse_json(raw: str) -> dict:
         data = json.loads(raw)
     except json.JSONDecodeError:
         return {
-            "mode": "concept", "speech": raw, "board_title": "Sahayak",
+            "mode": "concept", "speech": raw, "board_title": "Vidya",
             "board_points": [], "analogy": "", "diagram": [], "questions": [],
         }
     data.setdefault("mode", "concept")
     data.setdefault("speech", "")
-    data.setdefault("board_title", "Sahayak")
+    data.setdefault("board_title", "Vidya")
     data.setdefault("slides", [])
     data.setdefault("examples", [])
     data.setdefault("remember", "")

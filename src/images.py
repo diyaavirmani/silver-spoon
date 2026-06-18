@@ -7,7 +7,7 @@ from urllib.parse import quote
 
 import requests
 
-_HEADERS = {"User-Agent": "Sahayak-EduApp/1.0 (classroom teaching assistant)"}
+_HEADERS = {"User-Agent": "Vidya-EduApp/1.0 (classroom teaching assistant)"}
 _TIMEOUT = 6
 
 

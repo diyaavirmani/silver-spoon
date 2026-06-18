@@ -1,4 +1,4 @@
-# Sahayak grounding corpus (NCERT-style, grade 6-10)
+# Vidya grounding corpus (NCERT-style, grade 6-10)
 # Each blank-line-separated block is one retrievable chunk. Facts only; the brain
 # rewrites them into warm Hinglish for the class.
 

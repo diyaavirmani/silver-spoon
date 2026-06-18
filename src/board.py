@@ -52,10 +52,10 @@ def recap_html(remember: str, fun_fact: str, examples=None) -> str:
         items = "".join(
             f'<div class="example-card"><span class="ex-tag">e.g.</span>{_esc(e)}</div>' for e in examples
         )
-        ex_html = f'<div class="section-label">Real-life examples</div><div class="examples">{items}</div>'
+        ex_html = f'<div class="section-label">Examples</div><div class="examples">{items}</div>'
 
     rb = f'<div class="remember-box"><span class="rb-tag">Remember</span>{_esc(remember)}</div>' if remember else ""
-    ff = f'<div class="funfact"><b>Mazedaar baat:</b> {_esc(fun)}</div>' if fun else ""
+    ff = f'<div class="funfact"><b>Fun fact:</b> {_esc(fun)}</div>' if fun else ""
     return f'<div class="note-card recap">{ex_html}{rb}{ff}</div>'
 
 

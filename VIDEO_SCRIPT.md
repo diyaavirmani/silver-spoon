@@ -1,4 +1,4 @@
-# 🎬 Sahayak — 3-minute walkthrough script
+# 🎬 Vidya — 3-minute walkthrough script
 
 Target: **≤ 3:00**. Screen-record the running app; speak over it. Keep energy warm and
 classroom-real. Timestamps are a guide.
@@ -8,9 +8,9 @@ classroom-real. Timestamps are a guide.
 ### 0:00 – 0:25 · The problem (hook)
 > “Imagine a teacher in a Haryana government school. One smart board, forty students,
 > and her hands are full — chalk, register, no time to type. Students speak Hinglish.
-> Meet **Sahayak** — a hands-free, voice-first AI co-pilot for that classroom.”
+> Meet **Vidya** — a hands-free, voice-first AI co-pilot for that classroom.”
 
-*On screen:* the Sahayak home board, tagline visible.
+*On screen:* the Vidya home board, tagline visible.
 
 ---
 
@@ -18,7 +18,7 @@ classroom-real. Timestamps are a guide.
 1. Click the mic. Say: **“Photosynthesis simple Hinglish mein samjhao.”**
 2. Let it think (~2s). The board fills in; the voice speaks.
 
-> “She just *spoke* — no typing. Sahayak explains in simple Hinglish, **and** projects it:
+> “She just *spoke* — no typing. Vidya explains in simple Hinglish, **and** projects it:
 > crisp points, an everyday analogy — ‘jaise maa roti banati hai’ — and a little flow
 > diagram. That’s the explanation done, hands-free.”
 
@@ -31,7 +31,7 @@ classroom-real. Timestamps are a guide.
 2. Say: **“Jawab dikhao.”** → correct card lights up green + one-line reason.
 3. Say: **“Agla sawaal.”** → next question.
 
-> “Now I just say ‘quiz lo’ and Sahayak runs the quiz for the whole class — announces it,
+> “Now I just say ‘quiz lo’ and Vidya runs the quiz for the whole class — announces it,
 > shows A-B-C-D on the board, and I control everything by voice: reveal the answer, next
 > question, repeat. The teacher never touches the keyboard.”
 
@@ -42,7 +42,7 @@ classroom-real. Timestamps are a guide.
 > structured board plus what to say, a small TF-IDF retriever keeps facts on-syllabus, and
 > edge-tts gives it an Indian voice. Streamlit projects it on the smart board.
 > It’s a proof of concept — but it shows how voice + AI can give every government-school
-> teacher a patient, bilingual assistant. That’s **Sahayak**. Thank you!”
+> teacher a patient, bilingual assistant. That’s **Vidya**. Thank you!”
 
 *On screen:* show the repo / live URL briefly at the end.
 

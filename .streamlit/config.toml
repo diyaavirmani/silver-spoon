@@ -1,14 +1,13 @@
 [theme]
 base = "light"
-primaryColor = "#f4a259"
-backgroundColor = "#fbf7ec"
-secondaryBackgroundColor = "#fff7df"
-textColor = "#2b2b2b"
+primaryColor = "#5b57e0"
+backgroundColor = "#f4f5fb"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#1c2030"
 font = "sans serif"
 
 [server]
 headless = true
-# Keep uploaded mic clips small and fast.
 maxUploadSize = 10
 
 [browser]

@@ -1,4 +1,4 @@
-"""Sahayak — Voice-Enabled AI Teaching Assistant (Option A).
+"""Vidya — Voice-Enabled AI Teaching Assistant (Option A).
 
 Features:
   1. Live Concept Simplification — spoken Hinglish + projected notebook board.
@@ -19,7 +19,7 @@ from src.intent import classify
 from src.stt import transcribe
 from src.tts import speak_to_file
 
-st.set_page_config(page_title="Sahayak — AI Teaching Assistant", page_icon="📒", layout="wide")
+st.set_page_config(page_title="Vidya — AI Teaching Assistant", page_icon="📒", layout="wide")
 
 _css = Path(__file__).parent / "assets" / "styles.css"
 if _css.exists():
@@ -191,7 +191,7 @@ def handle_utterance(text: str) -> None:
 
 
 # ============================ header ============================
-st.markdown('<div class="nb-title">Sahayak</div>', unsafe_allow_html=True)
+st.markdown('<div class="nb-title">Vidya</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="nb-sub">A voice-first teaching assistant for the Hinglish classroom</div>',
     unsafe_allow_html=True,
