@@ -155,8 +155,14 @@ html, body, .stApp, .stApp p, .stApp label, .stApp span, .stApp div {
 
 /* Empty state */
 .empty-note { text-align: center; padding: 0.6rem 0; }
-.empty-note .big { font-family: 'Caveat', cursive; font-size: 2.2rem; color: #8a7e66; }
+.empty-note .big { font-family: 'Caveat', cursive; font-size: 2.4rem; color: #8a7e66; }
 .empty-note .ex { font-size: 1rem; color: #5b6c5d; margin-top: 0.3rem; }
+
+/* Starter topic chips */
+.try-label {
+    font-family: 'Caveat', cursive; font-size: 1.9rem; color: #c0392b;
+    text-align: center; margin: 1.3rem 0 0.7rem;
+}
 
 /* Buttons — chunky but clean sans, no wrapping */
 .stButton > button, .stFormSubmitButton > button {

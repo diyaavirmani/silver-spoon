@@ -326,10 +326,24 @@ elif mode == "quiz" and quiz["active"]:
 else:
     st.markdown(
         '<div class="note-card empty-note"><div class="big">The board is ready</div>'
-        '<div class="ex">Speak or type a command to explain a concept or start a quiz.</div>'
+        '<div class="ex">Tap a topic to begin — or speak / type your own command.</div>'
         "</div>",
         unsafe_allow_html=True,
     )
+    st.markdown('<div class="try-label">Try one of these</div>', unsafe_allow_html=True)
+    starters = [
+        ("Water cycle", "Explain the water cycle in simple Hinglish"),
+        ("Photosynthesis", "Explain photosynthesis in simple Hinglish"),
+        ("Fractions", "Explain fractions in simple Hinglish"),
+        ("Solar system", "Explain the solar system in simple Hinglish"),
+        ("Gravity", "Explain gravity in simple Hinglish"),
+        ("Quiz: Water cycle", "Make a quiz on the water cycle"),
+    ]
+    scols = st.columns(3)
+    for i, (label, prompt) in enumerate(starters):
+        if scols[i % 3].button(label, use_container_width=True, key=f"starter_{i}"):
+            handle_utterance(prompt)
+            st.rerun()
 
 # --- Voice playback + celebration ---
 if st.session_state.audio_bytes:
