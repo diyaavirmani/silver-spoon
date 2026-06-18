@@ -28,9 +28,15 @@ html, body, .stApp, p, div, span, label, input, button, h1, h2, h3 {
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 .stApp {
-    background:
-        radial-gradient(1100px 540px at 50% -8%, #ecebff 0%, rgba(236,235,255,0) 60%),
-        linear-gradient(180deg, #f6f6fc 0%, var(--bg) 100%);
+    background-color: #f3f4fb;
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(91,87,224,0.06) 1px, transparent 0),
+        radial-gradient(680px 520px at 8% 0%, rgba(91,87,224,0.20), transparent 60%),
+        radial-gradient(620px 520px at 94% 10%, rgba(139,92,246,0.16), transparent 60%),
+        radial-gradient(760px 620px at 88% 100%, rgba(255,122,89,0.14), transparent 60%),
+        radial-gradient(560px 520px at 6% 96%, rgba(20,184,166,0.11), transparent 60%);
+    background-size: 26px 26px, auto, auto, auto, auto;
+    background-attachment: fixed;
 }
 .block-container { max-width: 880px; padding-top: 1.6rem; }
 
