@@ -1,0 +1,13 @@
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Generated audio
+*.mp3
+audio_cache/

@@ -1,0 +1,269 @@
+/* ===== Sahayak — refined "classroom notebook" theme =====
+   Handwriting (Caveat / Patrick Hand) is reserved for the board itself;
+   all interface chrome uses a clean sans (Nunito) for a professional feel. */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&family=Nunito:wght@400;600;700&display=swap');
+
+/* Default UI font */
+html, body, .stApp, .stApp p, .stApp label, .stApp span, .stApp div {
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Graph-paper page */
+.stApp {
+    background-color: #fbf7ec;
+    background-image:
+        linear-gradient(rgba(95,130,150,0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(95,130,150,0.14) 1px, transparent 1px);
+    background-size: 26px 26px;
+}
+.block-container { max-width: 940px; padding-top: 1.6rem; }
+
+/* Header */
+.nb-title {
+    font-family: 'Caveat', cursive; font-weight: 700;
+    font-size: 3.4rem; line-height: 1.35; text-align: center; color: #c0392b;
+    padding-top: 0.12em; overflow: visible;
+}
+.nb-sub {
+    text-align: center; color: #5b6c5d; font-size: 1.05rem; font-weight: 600;
+    margin-top: 0.15rem; letter-spacing: 0.2px;
+}
+.nb-hint {
+    text-align: center; color: #8a7e66; font-size: 0.95rem; margin: 0.5rem 0 1.2rem;
+}
+.nb-hint b { color: #c0392b; font-weight: 700; }
+
+/* Teacher utterance chip */
+.teacher-wrap { text-align: center; margin: 0.4rem 0 0.2rem; }
+.teacher-chip {
+    font-size: 1rem; font-weight: 600; color: #2b2b2b; background: #fff7df;
+    display: inline-block; border: 1.5px dashed #c9b97e; border-radius: 10px;
+    padding: 0.3rem 1rem;
+}
+.teacher-chip b { color: #5b6c5d; }
+
+/* Paper card (board surface) */
+.note-card {
+    background: #ffffff; border: 2px solid #2b2b2b; border-radius: 14px;
+    box-shadow: 5px 5px 0 rgba(43,43,43,0.12);
+    padding: 1.4rem 1.8rem; margin: 0.9rem 0;
+}
+.note-card h2 {
+    font-family: 'Caveat', cursive; font-size: 2.6rem; color: #2b2b2b;
+    margin: 0.1rem 0 1rem; border-bottom: 2px dashed #e0d6b0; padding-bottom: 0.4rem;
+}
+
+/* Big lesson slideshow */
+.big-board { min-height: 520px; padding: 1.6rem 2rem; }
+.slide { animation: slideIn 0.4s ease-out both; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(22px); } to { opacity: 1; transform: translateX(0); } }
+
+.slide-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+.slide-topic { font-family: 'Caveat', cursive; font-size: 2.3rem; color: #2b2b2b; line-height: 1.2; }
+.slide-badge { font-weight: 700; color: #5b6c5d; font-size: 0.95rem; white-space: nowrap; }
+
+.slide-img {
+    display: block; width: 100%; max-height: 420px; object-fit: contain;
+    background: #f6f3e6; border: 2px solid #2b2b2b; border-radius: 12px;
+    margin: 0.3rem 0 1rem; box-shadow: 3px 3px 0 rgba(43,43,43,0.12);
+}
+.slide-img.placeholder {
+    display: flex; align-items: center; justify-content: center; height: 240px;
+    color: #8a7e66; font-family: 'Patrick Hand', cursive; font-size: 1.3rem;
+}
+.slide-heading { font-family: 'Caveat', cursive; font-size: 2.2rem; color: #c0392b; margin-bottom: 0.2rem; line-height: 1.2; }
+.slide-body { font-size: 1.35rem; color: #2b2b2b; line-height: 1.5; }
+.slide-count { text-align: center; font-weight: 700; color: #5b6c5d; padding-top: 0.55rem; font-size: 1.1rem; }
+
+/* Recap card (last slide) */
+.recap { padding: 1.2rem 1.6rem; }
+.section-label {
+    font-family: 'Caveat', cursive; font-size: 1.7rem; color: #c0392b; margin: 0 0 0.55rem;
+}
+.examples { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 0.4rem; }
+.example-card {
+    font-size: 1.1rem; color: #16384f; background: #eaf3fb;
+    border-left: 5px solid #378add; border-radius: 8px; padding: 0.7rem 1rem;
+}
+.ex-tag { font-weight: 700; color: #185fa5; margin-right: 0.5rem; text-transform: uppercase; font-size: 0.82rem; }
+.remember-box {
+    font-size: 1.2rem; color: #5a3d00; font-weight: 600;
+    background: #fff0b3; border: 2px dashed #f4a259; border-radius: 10px; padding: 0.9rem 1.1rem;
+}
+.rb-tag {
+    display: inline-block; background: #f4a259; color: #3a2600; font-weight: 700;
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 0.12rem 0.55rem; border-radius: 5px; margin-right: 0.6rem;
+}
+.funfact {
+    font-family: 'Patrick Hand', cursive; font-size: 1.15rem; color: #2b6b4f;
+    margin-top: 0.9rem; padding-top: 0.8rem; border-top: 2px dashed #e0d6b0;
+}
+
+/* Concept: sticky-note bullets (handwritten — they're board notes) */
+.stickies { display: flex; flex-wrap: wrap; gap: 1rem; }
+.sticky {
+    font-family: 'Patrick Hand', cursive; font-size: 1.25rem; color: #2b2b2b;
+    flex: 1 1 40%; min-width: 200px; max-width: 47%;
+    padding: 0.9rem 1.1rem; border-radius: 6px; box-shadow: 2px 3px 7px rgba(0,0,0,0.14);
+}
+.sticky:nth-child(4n+1) { background: #fff3a3; transform: rotate(-1.4deg); }
+.sticky:nth-child(4n+2) { background: #bfe3c0; transform: rotate(1.1deg); }
+.sticky:nth-child(4n+3) { background: #bcd9f2; transform: rotate(-0.9deg); }
+.sticky:nth-child(4n+4) { background: #f7c6d9; transform: rotate(1.6deg); }
+
+/* Concept: analogy */
+.analogy-note {
+    font-family: 'Patrick Hand', cursive; font-size: 1.3rem; color: #3a2f00;
+    background: #fff0b3; border-left: 6px solid #f4a259; border-radius: 8px;
+    padding: 0.85rem 1.15rem; margin-top: 1.3rem;
+}
+
+/* Concept: flow */
+.flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.4rem; }
+.flow-node {
+    font-family: 'Patrick Hand', cursive; background: #fff;
+    border: 2px solid #2b2b2b; border-radius: 10px; padding: 0.5rem 0.85rem;
+    text-align: center; box-shadow: 2px 2px 0 rgba(43,43,43,0.16);
+}
+.flow-node .fl { font-size: 1.15rem; font-weight: bold; color: #2b2b2b; }
+.flow-node .fs { font-size: 0.9rem; color: #6b6b6b; }
+.flow-arrow { font-family: 'Caveat', cursive; font-size: 2.2rem; color: #c0392b; }
+
+/* Quiz */
+.quiz-top { display: flex; justify-content: space-between; align-items: center; }
+.quiz-badge { font-size: 1rem; font-weight: 600; color: #5b6c5d; }
+.quiz-score { font-size: 1.2rem; color: #2b8a4e; font-weight: 700; }
+.quiz-q { font-family: 'Caveat', cursive; font-size: 2.4rem; color: #2b2b2b; margin: 0.5rem 0 0.2rem; }
+.quiz-cards { margin-top: 0.2rem; }
+.opt-card {
+    font-size: 1.2rem; font-weight: 600; color: #2b2b2b;
+    background: #fff; border: 2px solid #2b2b2b; border-radius: 10px;
+    padding: 0.8rem 1.05rem; margin-bottom: 0.65rem; box-shadow: 2px 2px 0 rgba(43,43,43,0.13);
+}
+.opt-card .k {
+    font-weight: 700; background: #2b2b2b; color: #fff;
+    border-radius: 5px; padding: 0 0.5rem; margin-right: 0.6rem;
+}
+.opt-card.correct { background: #cdeccf; }
+.opt-card.wrong   { background: #f3cccc; }
+.opt-card.dim     { opacity: 0.5; }
+.explain-note {
+    font-size: 1.05rem; color: #1f5132; background: #eafbe7;
+    border-radius: 8px; padding: 0.75rem 1rem; margin-top: 0.4rem;
+}
+
+/* Empty state */
+.empty-note { text-align: center; padding: 0.6rem 0; }
+.empty-note .big { font-family: 'Caveat', cursive; font-size: 2.2rem; color: #8a7e66; }
+.empty-note .ex { font-size: 1rem; color: #5b6c5d; margin-top: 0.3rem; }
+
+/* Buttons — chunky but clean sans, no wrapping */
+.stButton > button, .stFormSubmitButton > button {
+    font-family: 'Nunito', sans-serif !important; font-weight: 700 !important; font-size: 1.02rem !important;
+    white-space: nowrap;
+    background: #ffd97d; color: #2b2b2b;
+    border: 2px solid #2b2b2b !important; border-radius: 12px !important;
+    box-shadow: 3px 3px 0 #2b2b2b !important; padding: 0.5rem 1rem !important;
+    transition: all 0.05s ease !important;
+}
+.stButton > button:hover, .stFormSubmitButton > button:hover { background: #ffcf57; color: #2b2b2b; }
+.stButton > button:active, .stFormSubmitButton > button:active { transform: translate(3px, 3px); box-shadow: none !important; }
+
+/* Text input */
+.stTextInput input {
+    font-family: 'Nunito', sans-serif !important; font-size: 1rem !important;
+    height: 46px !important; padding: 0 0.9rem !important;
+    background: #fff !important; border: 2px solid #2b2b2b !important; border-radius: 10px !important;
+}
+/* Hide the "Press Enter to submit form" hint that overlapped the placeholder */
+[data-testid="InputInstructions"] { display: none !important; }
+
+/* Strip the default form container chrome (the empty box) */
+[data-testid="stForm"] {
+    border: none !important; padding: 0 !important; box-shadow: none !important; background: transparent !important;
+}
+
+/* Pulsing "ready to listen" status under the mic */
+.mic-status {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    color: #8a7e66; font-size: 0.9rem; font-weight: 600; margin: 0.45rem 0 0.1rem;
+}
+.pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: #e24b4a; position: relative; flex: none; }
+.pulse-dot::after {
+    content: ""; position: absolute; inset: 0; border-radius: 50%; background: #e24b4a;
+    animation: pulseRing 1.7s ease-out infinite;
+}
+@keyframes pulseRing { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(2.6); opacity: 0; } }
+
+/* "Thinking" card with a brilliant fact */
+.thinking-card {
+    background: #fff; border: 2px dashed #c9b97e; border-radius: 14px;
+    padding: 1.05rem 1.4rem; margin: 0.7rem 0; text-align: center;
+    animation: fadeIn 0.3s ease-out both;
+}
+.tk-dots { display: flex; gap: 7px; justify-content: center; margin-bottom: 0.5rem; }
+.tk-dots span {
+    width: 9px; height: 9px; border-radius: 50%; background: #f4a259;
+    display: inline-block; animation: blink 1.2s infinite ease-in-out;
+}
+.tk-dots span:nth-child(2) { animation-delay: 0.2s; }
+.tk-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: 0.25; transform: scale(0.9); } 40% { opacity: 1; transform: scale(1.15); } }
+.tk-label { color: #8a7e66; font-weight: 600; font-size: 0.92rem; }
+.tk-fact { font-family: 'Patrick Hand', cursive; font-size: 1.3rem; color: #2b2b2b; margin-top: 0.4rem; }
+.tk-fact .lead { color: #c0392b; font-weight: 700; }
+
+/* ===== Animations (tasteful: entrance + feedback) ===== */
+@keyframes popIn    { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeUp   { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes drawLine { to { width: 130px; } }
+@keyframes bounceOK { 0%, 100% { transform: scale(1); } 40% { transform: scale(1.045); } 70% { transform: scale(0.99); } }
+@keyframes shakeNo  { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+
+/* Title: gentle entrance + a pencil underline that draws in */
+.nb-title { animation: fadeIn 0.6s ease-out both; }
+.nb-title::after {
+    content: ""; display: block; height: 3px; width: 0; margin: 0.15rem auto 0;
+    background: #f4a259; border-radius: 2px; animation: drawLine 0.6s ease-out forwards 0.25s;
+}
+.nb-sub, .nb-hint { animation: fadeIn 0.7s ease-out both; }
+
+/* Boards / chips pop in */
+.note-card    { animation: popIn 0.45s ease-out both; }
+.teacher-wrap { animation: popIn 0.3s ease-out both; }
+.quiz-q       { animation: fadeIn 0.5s ease-out both; }
+
+/* Sticky notes: keep their tilt, just stagger the fade-in (opacity only) */
+.sticky { animation: fadeIn 0.5s ease-out both; }
+.sticky:nth-child(1) { animation-delay: 0.05s; }
+.sticky:nth-child(2) { animation-delay: 0.15s; }
+.sticky:nth-child(3) { animation-delay: 0.25s; }
+.sticky:nth-child(4) { animation-delay: 0.35s; }
+.sticky:nth-child(5) { animation-delay: 0.45s; }
+.sticky:nth-child(6) { animation-delay: 0.55s; }
+
+/* Quiz answer cards: fade up (opacity-only base so feedback transforms don't fight it) */
+.opt-card { animation: fadeIn 0.3s ease-out both; }
+.opt-card.correct { animation: fadeIn 0.3s ease-out both, bounceOK 0.55s ease 0.12s; }
+.opt-card.wrong   { animation: fadeIn 0.3s ease-out both, shakeNo 0.45s ease 0.1s; }
+
+/* Buttons: subtle hover lift (press effect already defined above) */
+.stButton > button:hover, .stFormSubmitButton > button:hover { transform: translateY(-1px); }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .nb-title::after { width: 130px; }
+}
+
+/* Send button: match the pale, full-width mic button for a consistent input row.
+   (Defined last so it overrides the chunky default for the form submit only.) */
+.stFormSubmitButton > button {
+    background: #fff7df !important; color: #2b2b2b !important; font-weight: 700 !important;
+    border: 1.5px solid #c9b97e !important; border-radius: 10px !important;
+    box-shadow: none !important; padding: 0.55rem 1rem !important;
+}
+.stFormSubmitButton > button:hover { background: #fbe7b0 !important; transform: none !important; }
+.stFormSubmitButton > button:active { transform: translateY(1px) !important; box-shadow: none !important; }
