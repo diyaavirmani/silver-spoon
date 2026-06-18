@@ -1,4 +1,4 @@
-# 🎓 Sahayak — Voice-Enabled AI Teaching Assistant
+#  Sahayak- Voice-Enabled AI Teaching Assistant
 
 A hands-free, **Hinglish** voice co-pilot for teachers in Indian government schools.
 The teacher speaks a command; Sahayak replies **aloud** *and* projects a clean visual on
@@ -8,7 +8,7 @@ the classroom **smart board** — no typing, no mouse, no breaking the flow of t
 
 ---
 
-## ✨ What it does (2 of the 4 required features)
+##  What it does (2 of the 4 required features)
 
 ### 1. Live Concept Simplification — a visual lesson slideshow
 Teacher: *“Explain the water cycle in simple Hinglish.”*
@@ -31,7 +31,7 @@ fact, turning wait time into a teachable moment. Hands stay free for the class t
 
 ---
 
-## 🧱 Tech stack & why
+## Tech stack 
 
 | Layer | Choice | Why this one |
 |---|---|---|
@@ -43,14 +43,14 @@ fact, turning wait time into a teachable moment. Hands stay free for the class t
 | **Grounding** | **TF-IDF RAG** + strict prompt guardrails | Anchors facts to a small NCERT-style syllabus corpus; keeps answers grade-appropriate |
 
 **Why no heavy STT/embedding models?** The whole pipeline is API- or CPU-light, so it builds
-and runs comfortably in a small Railway container and stays responsive in a classroom.
+and runs comfortably in a small RENDER container and stays responsive in a classroom.
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
-🎤 Browser mic ─► OpenAI Whisper (STT)─┐
+Browser mic ─► OpenAI Whisper (STT)─┐
 ⌨️  Typed input ──────────────────────┤
                                       ▼
                           Intent router (src/intent.py)
@@ -86,7 +86,7 @@ and runs comfortably in a small Railway container and stays responsive in a clas
 
 ---
 
-## 🌐 Localization
+##  Localization
 
 Sahayak is built **around Hinglish**, not bolted on:
 - **Input** is transcribed with a code-switch-aware model and a Hinglish prompt hint.
@@ -99,7 +99,7 @@ Sahayak is built **around Hinglish**, not bolted on:
 
 ---
 
-## ▶️ Run locally
+##  Run locally
 
 ```powershell
 cd Sahayak
@@ -118,39 +118,39 @@ No mic? Use the **type box** under the mic button — same pipeline, handy for t
 
 ---
 
-## ☁️ Deploy on Railway (→ public live URL)
+##  Deploy on RENDER (→ public live URL)
 
-Railway runs the app as a container. The repo already ships the config it needs:
-`railway.json` (start command bound to Railway's `$PORT`) and a `Procfile` fallback.
+RENDER runs the app as a container. The repo already ships the config it needs:
+`RENDER.json` (start command bound to RENDER's `$PORT`) and a `Procfile` fallback.
 
 **Option 1 — Dashboard (no CLI):**
 1. Push this folder to a **public GitHub repo**.
-2. Go to https://railway.app → **New Project → Deploy from GitHub repo** → pick the repo.
-   Railway auto-detects Python (Nixpacks) and installs `requirements.txt`.
+2. Go to https://RENDER.app → **New Project → Deploy from GitHub repo** → pick the repo.
+   RENDER auto-detects Python (Nixpacks) and installs `requirements.txt`.
 3. Open the service → **Variables** → add:
    ```
    OPENAI_API_KEY     = sk-...
    OPENROUTER_API_KEY = sk-or-...   # optional fallback
    ```
-4. **Settings → Networking → Generate Domain** → that `*.up.railway.app` URL is your
-   submission link. (Railway uses the `startCommand` in `railway.json` automatically.)
+4. **Settings → Networking → Generate Domain** → that `*.up.RENDER.app` URL is your
+   submission link. (RENDER uses the `startCommand` in `RENDER.json` automatically.)
 
-**Option 2 — Railway CLI:**
+**Option 2 — RENDER CLI:**
 ```bash
-npm i -g @railway/cli
-railway login
-railway init                       # create a project
-railway up                         # build & deploy this folder
-railway variables --set OPENAI_API_KEY=sk-... --set OPENROUTER_API_KEY=sk-or-...
-railway domain                     # generate the public URL
+npm i -g @RENDER/cli
+RENDER login
+RENDER init                       # create a project
+RENDER up                         # build & deploy this folder
+RENDER variables --set OPENAI_API_KEY=sk-... --set OPENROUTER_API_KEY=sk-or-...
+RENDER domain                     # generate the public URL
 ```
 
 > The start command binds Streamlit to `0.0.0.0:$PORT` in headless mode, which is what
-> Railway’s proxy expects. No keys are committed — they live in Railway Variables.
+> RENDER’s proxy expects. No keys are committed — they live in RENDER Variables.
 
 ---
 
-## 📁 Project layout
+##  Project layout
 
 ```
 Sahayak/
@@ -173,7 +173,7 @@ Sahayak/
 
 ---
 
-## ⚖️ Scope & honesty
+##  Scope & honesty
 
 This is a **proof of concept**, not a production app. Known simplifications: the syllabus
 corpus is a small starter set; TF-IDF retrieval is deliberately lightweight (swap in
