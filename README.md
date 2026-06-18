@@ -1,4 +1,4 @@
-#  Sahayak- Voice-Enabled AI Teaching Assistant
+# Sahayak — Voice-Enabled AI Teaching Assistant
 
 A hands-free, **Hinglish** voice co-pilot for teachers in Indian government schools.
 The teacher speaks a command; Sahayak replies **aloud** *and* projects a clean visual on
@@ -8,7 +8,7 @@ the classroom **smart board** — no typing, no mouse, no breaking the flow of t
 
 ---
 
-##  What it does (2 of the 4 required features)
+## What it does (2 of the 4 required features)
 
 ### 1. Live Concept Simplification — a visual lesson slideshow
 Teacher: *“Explain the water cycle in simple Hinglish.”*
@@ -21,7 +21,7 @@ a “Remember” takeaway, and a fun fact**.
 ### 2. Voice-Triggered Quizzing — interactive & scored
 Teacher: *“Make a quiz on this.”*
 → Sahayak **announces** a quiz aloud and shows big **A/B/C/D cards**. Students **tap to
-answer** — correct turns green (with a celebration 🎈), wrong turns red — and a **live score**
+answer** — correct turns green (with a celebration), wrong turns red — and a **live score**
 is kept. It’s driven by voice *or* on-screen buttons:
 - *“show answer”* → reveal & explain
 - *“next question”* · *“repeat”* · *“clear board”*
@@ -31,7 +31,7 @@ fact, turning wait time into a teachable moment. Hands stay free for the class t
 
 ---
 
-## Tech stack 
+## Tech stack
 
 | Layer | Choice | Why this one |
 |---|---|---|
@@ -43,32 +43,32 @@ fact, turning wait time into a teachable moment. Hands stay free for the class t
 | **Grounding** | **TF-IDF RAG** + strict prompt guardrails | Anchors facts to a small NCERT-style syllabus corpus; keeps answers grade-appropriate |
 
 **Why no heavy STT/embedding models?** The whole pipeline is API- or CPU-light, so it builds
-and runs comfortably in a small RENDER container and stays responsive in a classroom.
+and runs comfortably in a small Render container and stays responsive in a classroom.
 
 ---
 
 ## Architecture
 
 ```
-Browser mic ─► OpenAI Whisper (STT)─┐
-⌨️  Typed input ──────────────────────┤
-                                      ▼
-                          Intent router (src/intent.py)
-                          ├─ quiz control? → handled instantly, offline
-                          └─ content?      → TF-IDF RAG (src/rag.py)
-                                                   │  + syllabus notes
-                                                   ▼
-                            OpenAI gpt-4o-mini  →  OpenRouter (fallback)
-                            (src/brain.py) returns JSON: { mode, speech, board… }
-                                      │
-                        ┌─────────────┴──────────────┐
-                  edge-tts (voice)          Smart board (src/board.py)
-                  speaks Hinglish           concept visual / quiz cards
+Browser mic ─► OpenAI Whisper (STT) ─┐
+Typed input ─────────────────────────┤
+                                     ▼
+                         Intent router (src/intent.py)
+                         ├─ quiz/slide control? → handled instantly, offline
+                         └─ content?            → TF-IDF RAG (src/rag.py)
+                                                       │  + syllabus notes
+                                                       ▼
+                           OpenAI gpt-4o-mini  →  OpenRouter (fallback)
+                           (src/brain.py) returns JSON: { mode, speech, slides|quiz }
+                                     │
+                       ┌─────────────┴──────────────┐
+                 edge-tts (voice)            Board (src/board.py)
+                 speaks Hinglish             lesson slides + images / quiz cards
 ```
 
 ---
 
-## 🧠 Prompt design
+## Prompt design
 
 - **One structured call.** The model is the brain *and* the intent classifier for content:
   a single system prompt makes it decide `mode: "concept" | "quiz"` and return JSON for the
@@ -81,12 +81,12 @@ Browser mic ─► OpenAI Whisper (STT)─┐
 - **Grounding (RAG):** the utterance is matched against a small NCERT-style corpus
   (`knowledge/concepts.md`) with TF-IDF cosine similarity; the top snippets are injected as
   `SYLLABUS NOTES` and the prompt tells the model to *prefer them for facts*.
-- **Fast local commands:** quiz navigation (*reveal / next / repeat / clear*) is keyword-
-  routed offline (`src/intent.py`) so it feels instant and costs no tokens mid-class.
+- **Fast local commands:** navigation (*next / previous / reveal / repeat / clear*) is
+  keyword-routed offline (`src/intent.py`) so it feels instant and costs no tokens mid-class.
 
 ---
 
-##  Localization
+## Localization
 
 Sahayak is built **around Hinglish**, not bolted on:
 - **Input** is transcribed with a code-switch-aware model and a Hinglish prompt hint.
@@ -99,7 +99,7 @@ Sahayak is built **around Hinglish**, not bolted on:
 
 ---
 
-##  Run locally
+## Run locally
 
 ```powershell
 cd Sahayak
@@ -118,39 +118,35 @@ No mic? Use the **type box** under the mic button — same pipeline, handy for t
 
 ---
 
-##  Deploy on RENDER (→ public live URL)
+## Deploy on Render (→ public live URL)
 
-RENDER runs the app as a container. The repo already ships the config it needs:
-`RENDER.json` (start command bound to RENDER's `$PORT`) and a `Procfile` fallback.
+Render runs the app as a container, configured from the dashboard:
 
-**Option 1 — Dashboard (no CLI):**
-1. Push this folder to a **public GitHub repo**.
-2. Go to https://RENDER.app → **New Project → Deploy from GitHub repo** → pick the repo.
-   RENDER auto-detects Python (Nixpacks) and installs `requirements.txt`.
-3. Open the service → **Variables** → add:
+1. Push this repo to GitHub (public).
+2. Go to https://render.com → **New + → Web Service** → connect this GitHub repo.
+3. Set:
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:**
+     ```
+     streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true --server.enableCORS false --server.enableXsrfProtection false
+     ```
+   - **Instance Type:** Free
+4. Under **Environment**, add variables:
    ```
    OPENAI_API_KEY     = sk-...
    OPENROUTER_API_KEY = sk-or-...   # optional fallback
    ```
-4. **Settings → Networking → Generate Domain** → that `*.up.RENDER.app` URL is your
-   submission link. (RENDER uses the `startCommand` in `RENDER.json` automatically.)
-
-**Option 2 — RENDER CLI:**
-```bash
-npm i -g @RENDER/cli
-RENDER login
-RENDER init                       # create a project
-RENDER up                         # build & deploy this folder
-RENDER variables --set OPENAI_API_KEY=sk-... --set OPENROUTER_API_KEY=sk-or-...
-RENDER domain                     # generate the public URL
-```
+5. Click **Create Web Service**. When the build finishes you get a public
+   `https://<name>.onrender.com` URL — that's the live link.
 
 > The start command binds Streamlit to `0.0.0.0:$PORT` in headless mode, which is what
-> RENDER’s proxy expects. No keys are committed — they live in RENDER Variables.
+> Render's proxy expects. Keys live in Render's Environment, never in the repo.
+> Note: free instances sleep after ~15 min idle, so the first request after a nap takes
+> ~30–50s to wake — open it once before sharing.
 
 ---
 
-##  Project layout
+## Project layout
 
 ```
 Sahayak/
@@ -173,9 +169,10 @@ Sahayak/
 
 ---
 
-##  Scope & honesty
+## Scope & honesty
 
 This is a **proof of concept**, not a production app. Known simplifications: the syllabus
 corpus is a small starter set; TF-IDF retrieval is deliberately lightweight (swap in
-embeddings to scale); audio autoplay depends on the browser. Everything is structured so
-each of these can grow without reworking the pipeline.
+embeddings to scale); image relevance is best on canonical school topics; audio autoplay
+depends on the browser. Everything is structured so each of these can grow without reworking
+the pipeline.
